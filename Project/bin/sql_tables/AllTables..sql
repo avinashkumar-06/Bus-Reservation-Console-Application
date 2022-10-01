@@ -116,13 +116,15 @@ mysql> create table Customer_Tickets(
     -> tid int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     -> cid int NOT NULL,
     -> bid int NOT NULL,
-    -> bname varchar(25),
-    -> source varchar(25),
-    -> destination varchar(25),
-    -> btype varchar(15),
+    -> bname varchar(25) NOT NULL,
+    -> source varchar(25) NOT NULL,
+    -> destination varchar(25) NOT NULL,
+    -> btype varchar(15) NOT NULL,
     -> fare int,
     -> seatNum int,
-    -> contact varchar(12));
+    -> contact varchar(12) NOT NULL,
+    -> FOREIGN KEY(cid) REFERENCES Customer(cid),
+    -> FOREIGN KEY(bid) REFERENCES Bus(bid));
 Query OK, 0 rows affected (0.05 sec)
 
 mysql> desc Customer_Tickets;
@@ -130,23 +132,17 @@ mysql> desc Customer_Tickets;
 | Field       | Type        | Null | Key | Default | Extra          |
 +-------------+-------------+------+-----+---------+----------------+
 | tid         | int         | NO   | PRI | NULL    | auto_increment |
-| cid         | int         | NO   |     | NULL    |                |
-| bid         | int         | NO   |     | NULL    |                |
-| bname       | varchar(25) | YES  |     | NULL    |                |
-| source      | varchar(25) | YES  |     | NULL    |                |
-| destination | varchar(25) | YES  |     | NULL    |                |
-| btype       | varchar(15) | YES  |     | NULL    |                |
+| cid         | int         | NO   | MUL | NULL    |                |
+| bid         | int         | NO   | MUL | NULL    |                |
+| bname       | varchar(25) | NO   |     | NULL    |                |
+| source      | varchar(25) | NO   |     | NULL    |                |
+| destination | varchar(25) | NO   |     | NULL    |                |
+| btype       | varchar(15) | NO   |     | NULL    |                |
 | fare        | int         | YES  |     | NULL    |                |
 | seatNum     | int         | YES  |     | NULL    |                |
-| contact     | varchar(12) | YES  |     | NULL    |                |
+| contact     | varchar(12) | NO   |     | NULL    |                |
 +-------------+-------------+------+-----+---------+----------------+
 10 rows in set (0.01 sec)
-
-
-
-
-
-
 
 
 
