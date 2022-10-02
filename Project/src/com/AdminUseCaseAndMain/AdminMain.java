@@ -1,5 +1,6 @@
 package com.AdminUseCaseAndMain;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.admindao.AdminDaoImpl;
@@ -7,6 +8,7 @@ import com.admindao.AdminDaoInter;
 import com.bean.Admin;
 import com.bean.Bus;
 import com.exceptions.AdminException;
+import com.exceptions.BusException;
 
 public class AdminMain {
 
@@ -72,10 +74,32 @@ public class AdminMain {
 			Bus bus =new Bus(bid, bname,  source,  destination,  type,  seats,  departure,
 					 arrival,  fare,  contact);
 			
+			AdminDaoInter intr = new AdminDaoImpl();
+			try {
+				String msg=intr.addNewBus(bus);
+				System.out.println(msg);
+			} catch (BusException e) {
+				System.out.println(e.getMessage());
+			}
+			
+			break;
+			
+		case 2:
+			AdminDaoInter intr1 = new AdminDaoImpl();
+			try {
+				List<Bus> buses=intr1.viewAllBus();
+				
+				for(Bus b : buses) {
+					System.out.println(b);
+				}
+				
+				
+			} catch (BusException e) {
+				// TODO Auto-generated catch block
+				System.out.println(e.getMessage());
+			}
 			
 		}
-		
-		
 		
 	}
 	
@@ -96,6 +120,7 @@ public class AdminMain {
 				
 			}else {
 				System.out.println("Please check your password and try again.Passwords are case sensitive.");
+				
 			}
 			
 			
