@@ -112,22 +112,13 @@ public class AdminMain {
 			
 			if(ad.getPassword().equals(password)) {
 				
-
-				
-				
-				
-				
+				dashBoard();
 				
 			}else {
 				System.out.println("Please check your password and try again.Passwords are case sensitive.");
 				
 			}
-			
-			
-			
-			
-			
-			
+	
 			
 		} catch (AdminException e) {
 			// TODO Auto-generated catch block

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import com.AdminUseCaseAndMain.AdminMain;
+import com.CustomerUseCaseAndMain.CustomerMain;
 
 
 public class Main {
@@ -36,7 +37,23 @@ public class Main {
 			break;
 		
 		case 2:
-			System.out.println("Customer");
+			
+			System.out.println("Customer Selection Page: ");
+			System.out.println("===========================");
+			
+			System.out.println("1.New Customer? Register.   2.Existing customer? Login");
+			
+			System.out.println("Please select your option: ");
+			int ch2=sc.nextInt();
+			
+			if(ch2==1) {
+				CustomerMain.registerCustomer();
+			}
+			else if(ch2==2) {
+				CustomerMain.existingCustomer();
+			}
+			
+			
 			break;
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + userChoice);
