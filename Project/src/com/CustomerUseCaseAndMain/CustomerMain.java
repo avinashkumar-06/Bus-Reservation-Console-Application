@@ -121,6 +121,9 @@ public class CustomerMain {
 		if(customerChoice==1) {
 			bookTickets(customer);
 		}
+		else if(customerChoice==2) {
+			cancelTickets(customer);
+		}
 		
 	}
 	
@@ -252,11 +255,59 @@ public class CustomerMain {
 	
 	}
 	
-	
+	public static void cancelTickets(Customer customer) {
+		
+		Scanner sc = new Scanner(System.in);
+		CustomerDaoInter  intr = new CustommerDaoImpl();
+		List<Tickets> tickets = null;
+		System.out.println("Your bookes tickets are: ");
+		
+		try {
+		    tickets = intr.getTicketsOfACustomer(customer.getCid());
+			System.out.println("Please choose which tiket you want to cancel:");
+			System.out.println("----------------------------------------------\n");
+			
+			for(int i=0;i<tickets.size();i++) {
+				System.out.println(i+"."+tickets.get(i));
+			}
+			
+			int ticketChoice=sc.nextInt();
+			
+			Tickets ticket = tickets.get(ticketChoice);
+			
+			String msg = intr.cancelTicketBasedOnTid(ticket.getTid(), ticket.getBid(), ticket.getSeatNum());
+			System.out.println(msg);
+			
+			
+		} catch (CustomerException e) {
+			System.out.println(e.getMessage());
+			System.out.println("Your van also perform following tasks: ");
+			System.out.println("-------------------------------------------------------------");
+			System.out.println("1.Go to tickets Booking    2.Go to Customer Dashboard");
+			System.out.println("3.Exit the application.");
+			System.out.println("Enter your choice:");
+			int usrchoi3=sc.nextInt();
+			
+			if(usrchoi3==1) {
+				bookTickets(customer);
+			}
+			else if(usrchoi3==2) {
+				customerDashhBoard(customer);
+			}
+			else if(usrchoi3==3) {
+				System.exit(0);
+			}
+			else {
+				System.out.println("Invalid choice. Please Start again.");
+				System.exit(0);
+			}
+		}
+		
+	}
 	
 	public static void main(String[] args) {
 		
-//		bookTickets(null);
+
 		
 	}
 }

@@ -15,4 +15,7 @@ public interface CustomerDaoInter {
 	public List<String> destinationAccordingToSource(String source) throws CustomerException;
 	public Bus  busAccordingToSourceAndDestination(String source,String destination,int seatNum) throws CustomerException;
 	public String bookAndAddTicketToDataBase(Tickets ticket) throws CustomerException;
+	public List<Tickets> getTicketsOfACustomer(int cid) throws CustomerException;
+	public String cancelTicketBasedOnTid(int tid,int bid,int seatNum) throws CustomerException;
+	
 }

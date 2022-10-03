@@ -250,5 +250,99 @@ public class CustommerDaoImpl implements CustomerDaoInter{
 		return msg;
 	}
 
+	@Override
+	public List<Tickets> getTicketsOfACustomer(int cid) throws CustomerException {
+		List<Tickets> tickets = new ArrayList<>();
+		
+		
+		try(Connection conn = DBUtil.provideConnection()){
+			
+			PreparedStatement ps = conn.prepareStatement("select * from Customer_Tickets where cid=?");
+			ps.setInt(1, cid);
+			
+			ResultSet rs =  ps.executeQuery();
+			
+			while(rs.next()) {
+				Tickets ticket = new Tickets();
+				
+				ticket.setTid(rs.getInt("tid"));
+				ticket.setCid(rs.getInt("cid"));
+				ticket.setBid(rs.getInt("bid"));
+				ticket.setBname(rs.getString("bname"));
+				ticket.setSource(rs.getString("source"));
+				ticket.setDestination(rs.getString("destination"));
+				ticket.setDeparture(rs.getString("departure"));
+				ticket.setArrival(rs.getString("arrival"));
+				ticket.setBtype(rs.getString("btype"));
+				ticket.setContact(rs.getString("contact"));
+				ticket.setSeatNum(rs.getInt("seatNum"));
+				ticket.setFare(rs.getInt("fare"));
+				
+				tickets.add(ticket);
+				
+			}
+			
+			if(tickets.isEmpty()) {
+				throw new CustomerException("You have not booked any tickets yet.");
+			}
+			
+			
+			
+			
+		} catch (SQLException e) {
+			throw new CustomerException(e.getMessage());
+		}
+		
+		
+		
+		
+		
+		
+		
+		return tickets;
+	}
+
+	@Override
+	public String cancelTicketBasedOnTid(int tid, int bid,int seatNum) throws CustomerException {
+		
+			
+			String msg="Not deleted";
+			
+			try(Connection conn = DBUtil.provideConnection()){
+				
+				PreparedStatement ps  = conn.prepareStatement("delete from Customer_Tickets where tid=?");
+				ps.setInt(1, tid);
+				
+				int check = ps.executeUpdate();
+				if(check>0) {
+					msg="Ticket canceled";
+					
+					PreparedStatement ps1  = 
+							conn.prepareStatement("update Bus set seats=seats-? where bid=?");
+					ps1.setInt(1, bid);
+					ps1.setInt(2, seatNum);
+					
+					int check2 = ps1.executeUpdate();
+					if(check2>0) {
+						msg="Ticket Canceled and Fare is refunded.";
+					}
+					
+					
+					
+				}
+				
+			} catch (SQLException e) {
+				throw new CustomerException(e.getMessage());
+			}
+			
+			
+			
+			return msg;
+		}
+
+	
+
+
+	
 	
 }

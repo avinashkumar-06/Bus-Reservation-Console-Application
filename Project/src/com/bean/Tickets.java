@@ -162,9 +162,9 @@ public class Tickets {
 
 		@Override
 		public String toString() {
-			return "Tickets [tid=" + tid + ", cid=" + cid + ", bid=" + bid + ", bname=" + bname + ", source=" + source
-					+ ", destination=" + destination + ", btype=" + btype + ", fare=" + fare + ", seatNum=" + seatNum
-					+ ", contact=" + contact + ", departure=" + departure + ", arrival=" + arrival + "]";
+			return "[tid:" + tid + ", cid:" + cid + ", bid:" + bid + ", bname:" + bname + ", source:" + source
+					+ ", destination:" + destination + ", btype:" + btype + ", fare:" + fare + ", seatNum:" + seatNum
+					+ ", contact:" + contact + ", departure:" + departure + ", arrival:" + arrival + "]";
 		}
 
 		
