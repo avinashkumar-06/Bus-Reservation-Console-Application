@@ -229,6 +229,26 @@ public class CustomerMain {
 		    
 		    System.out.println("Please cotact bus manager for any help at mobile number "+ticket.getContact());
 		    
+		    System.out.println("--------------------------------------");
+		    System.out.println("1. Book another ticket    2.Go to Customer Dashboard");
+			System.out.println("3.Exit the application.");
+			System.out.println("Enter your choice:");
+			int usrchoi3=sc.nextInt();
+			
+			if(usrchoi3==1) {
+				bookTickets(customer);
+			}
+			else if(usrchoi3==2) {
+				customerDashhBoard(customer);
+			}
+			else if(usrchoi3==3) {
+				System.exit(0);
+			}
+			else {
+				System.out.println("Invalid choice. Please Start again.");
+				System.exit(0);
+			}
+		    
 		} catch (CustomerException e) {
 			System.out.println(e.getMessage());
 			System.out.println("Your booking has failed but you can try following options: ");
@@ -277,6 +297,26 @@ public class CustomerMain {
 			
 			String msg = intr.cancelTicketBasedOnTid(ticket.getTid(), ticket.getBid(), ticket.getSeatNum());
 			System.out.println(msg);
+			
+			 System.out.println("--------------------------------------------------------");
+			    System.out.println("1. Book another ticket    2.Go to Customer Dashboard");
+				System.out.println("3.Exit the application.");
+				System.out.println("Enter your choice:");
+				int usrchoi3=sc.nextInt();
+				
+				if(usrchoi3==1) {
+					bookTickets(customer);
+				}
+				else if(usrchoi3==2) {
+					customerDashhBoard(customer);
+				}
+				else if(usrchoi3==3) {
+					System.exit(0);
+				}
+				else {
+					System.out.println("Invalid choice. Please Start again.");
+					System.exit(0);
+				}
 			
 			
 		} catch (CustomerException e) {

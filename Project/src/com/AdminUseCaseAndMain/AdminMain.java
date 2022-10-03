@@ -20,7 +20,7 @@ public class AdminMain {
 		System.out.println("========================");
 		
 		System.out.println("1.Add A bus                   2.View All Buses \n");
-		System.out.println("3.View all Customer           4.View All Tickets \n");
+		
 
 		int choice = sc.nextInt();
 		
