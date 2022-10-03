@@ -123,6 +123,8 @@ mysql> create table Customer_Tickets(
     -> fare int,
     -> seatNum int,
     -> contact varchar(12) NOT NULL,
+    -> departure varchar(10) NOT NULL,
+    -> ARRIVAL varchar(10),
     -> FOREIGN KEY(cid) REFERENCES Customer(cid),
     -> FOREIGN KEY(bid) REFERENCES Bus(bid));
 Query OK, 0 rows affected (0.05 sec)
@@ -141,8 +143,11 @@ mysql> desc Customer_Tickets;
 | fare        | int         | YES  |     | NULL    |                |
 | seatNum     | int         | YES  |     | NULL    |                |
 | contact     | varchar(12) | NO   |     | NULL    |                |
+| departure   | varchar(10) | NO   |     | NULL    |                |
+| arrival     | varchar(10) | YES  |     | NULL    |                |
 +-------------+-------------+------+-----+---------+----------------+
-10 rows in set (0.01 sec)
+12 rows in set (0.01 sec)
+
 
 
 
