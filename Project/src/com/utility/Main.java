@@ -13,9 +13,13 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Please select your role: ");
-		System.out.println("===========================");
-		System.out.println("1.Admin        2.Customer");
+		System.out.println("                    ==================================================");
+		System.out.println("                            Bus Ticket Reservation system   ");
+		System.out.println("                    ==================================================");
+		System.out.println("                         ");
+		System.out.println("                              Please select your role ");
+		System.out.println("                            =============================");
+		System.out.println("                             1.Admin        2.Customer");
 		int userChoice=sc.nextInt();
 		
 		switch (userChoice) {
@@ -37,13 +41,13 @@ public class Main {
 			break;
 		
 		case 2:
+			System.out.println("\n                    -----------------------------------------");
+			System.out.println("                            Customer Selection Page ");
+			System.out.println("                    -----------------------------------------");
 			
-			System.out.println("Customer Selection Page: ");
-			System.out.println("===========================");
+			System.out.println("              1.New Customer? Register.   2.Existing customer? Login");
 			
-			System.out.println("1.New Customer? Register.   2.Existing customer? Login");
-			
-			System.out.println("Please select your option: ");
+			System.out.println("                         Please select your option: ");
 			int ch2=sc.nextInt();
 			
 			if(ch2==1) {
