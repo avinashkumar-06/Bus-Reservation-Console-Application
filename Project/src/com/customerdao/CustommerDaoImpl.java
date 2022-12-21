@@ -35,7 +35,7 @@ public class CustommerDaoImpl implements CustomerDaoInter{
 			int check = ps.executeUpdate();
 			
 			if(check>0) {
-				System.out.println("Registration Succesfull.");
+				System.out.println("               "+customer.getName().toUpperCase()+" your registration is Succesfull.");
 			}else {
 				throw new CustomerException("Customer not added");
 			}
@@ -76,11 +76,12 @@ public class CustommerDaoImpl implements CustomerDaoInter{
 				customer.setPassword(rs.getString("password"));
 				
 			}else {
-				throw new CustomerException("Email not found. Check email or Register if you are a new customer.");
+				throw new CustomerException("Email not found.Register if you are\n"
+						+ "                       a new customer.");
 			}
 			
 			if(!customer.getPassword().equals(password)) {
-				throw new CustomerException("Password is incorrect.");
+				throw new CustomerException("Entered Password is incorrect.");
 			}
 			
 			
