@@ -12,7 +12,8 @@ import com.exceptions.CustomerException;
 
 public class CustomerMain {
 
-	
+//	This method will be called from main class of utility package.
+//	It will take input from user and register it to the database.
 	public static void registerCustomer() {
 		
 		Scanner sc = new Scanner(System.in);
@@ -83,6 +84,9 @@ public class CustomerMain {
 		
 	}
 	
+//	This method will be called from main class of utility package.
+//	It will take input from user and will verify with details in database to verify if password and username is correct.
+	
 	public static void existingCustomer() {
 		Scanner sc = new Scanner(System.in);
 		CustomerDaoInter  intr = new CustommerDaoImpl();
@@ -129,7 +133,8 @@ public class CustomerMain {
 		
 	}
 	
-	
+//	This method will be called from existingCustomer() method with Customer object.
+//	It will show options to user for ticket booking,cancel ticket and view all ticket.
 	
 	public static void customerDashhBoard(Customer customer) {
 		Scanner sc = new Scanner(System.in);
@@ -156,6 +161,8 @@ public class CustomerMain {
 		
 	}
 	
+//	This method will be called from customerDashboard() method with Customer object.
+//	It will take input from user and will book ticket.
 	public static void bookTickets(Customer customer) {
 		Scanner sc = new Scanner(System.in);
 		CustomerDaoInter  intr = new CustommerDaoImpl();
@@ -309,6 +316,9 @@ public class CustomerMain {
 	
 	}
 	
+//	This method will be called from customerDashboard() method with Customer object.
+//	It will show all the tickets booked by user.
+	
 	public static void viewTickets(Customer customer) {
 
 		Scanner sc = new Scanner(System.in);
@@ -369,7 +379,8 @@ public class CustomerMain {
 			}
 }
 	
-	
+//	This method will be called from customerDashboard() method with Customer object.
+//	It will ask user to choose which ticket to cancel abd then it will cancel that ticket.
 	
 	
 	public static void cancelTickets(Customer customer) {
