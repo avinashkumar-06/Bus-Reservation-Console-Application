@@ -251,13 +251,15 @@ public class CustomerMain {
 		try {
 			String msg = intr.bookAndAddTicketToDataBase(ticket);
 			System.out.println("                         "+msg);
-			System.out.println("                         Bus Name: "+ticket.getBname().toUpperCase());
-			System.out.println("                         Source: "+ticket.getSource().toUpperCase());
-			System.out.println("                         Departure time: "+ticket.getDeparture().toUpperCase());
-			System.out.println("                         Destination: "+ticket.getDestination().toUpperCase());
-			System.out.println("                         Arrival: "+ticket.getArrival().toUpperCase());
-			System.out.println("                         Number of seats: "+ticket.getSeatNum());
-			System.out.println("                         Bus contact:"+ticket.getContact());
+			System.out.println("                     Here is your Booking details:  ");
+			System.out.println("                  -----------------------------------");
+			System.out.println("                         Bus Name: "+ticket.getBname().toUpperCase()+"\n");
+			System.out.println("                         Source: "+ticket.getSource().toUpperCase()+"\n");
+			System.out.println("                         Departure time: "+ticket.getDeparture().toUpperCase()+"\n");
+			System.out.println("                         Destination: "+ticket.getDestination().toUpperCase()+"\n");
+			System.out.println("                         Arrival: "+ticket.getArrival().toUpperCase()+"\n");
+			System.out.println("                         Number of seats: "+ticket.getSeatNum()+"\n");
+			System.out.println("                         Bus contact:"+ticket.getContact()+"\n");
 			System.out.println("                         Fare: "+ticket.getFare());
 
 		    
