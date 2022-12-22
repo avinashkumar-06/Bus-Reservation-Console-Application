@@ -139,6 +139,8 @@ public class CustomerMain {
 		System.out.println("                  ----------------------------------------\n");
 		
 		System.out.println("                   1.Book Ticket       2.Cancel  Ticket \n");
+		System.out.println("                   3.View All Tickets       \n");
+
 		
 		System.out.println("                         Please Enter your choice: ");
 		int customerChoice= sc.nextInt();
@@ -148,6 +150,8 @@ public class CustomerMain {
 		}
 		else if(customerChoice==2) {
 			cancelTickets(customer);
+		}else if(customerChoice==3) {
+			viewTickets(customer);
 		}
 		
 	}
@@ -302,6 +306,69 @@ public class CustomerMain {
 		}
 	
 	}
+	
+	public static void viewTickets(Customer customer) {
+
+		Scanner sc = new Scanner(System.in);
+		CustomerDaoInter  intr = new CustommerDaoImpl();
+		List<Tickets> tickets = null;
+		
+		try {
+		    tickets = intr.getTicketsOfACustomer(customer.getCid());
+			System.out.println("Here is the list of your tickets:-");
+			System.out.println("----------------------------------------------\n");
+			
+			for(int i=0;i<tickets.size();i++) {
+				System.out.println(i+"."+tickets.get(i));
+			}
+			
+			    System.out.println("--------------------------------------------------------");
+			    System.out.println("1. Book Ticket    2.Go to Customer Dashboard");
+				System.out.println("3.Exit the application.");
+				System.out.println("Enter your choice:");
+				int usrchoi3=sc.nextInt();
+				
+				if(usrchoi3==1) {
+					bookTickets(customer);
+				}
+				else if(usrchoi3==2) {
+					customerDashhBoard(customer);
+				}
+				else if(usrchoi3==3) {
+					System.exit(0);
+				}
+				else {
+					System.out.println("Invalid choice. Please Start again.");
+					System.exit(0);
+				}
+		}
+		 catch (CustomerException e) {
+				System.out.println("\n                   "+e.getMessage());
+				System.out.println("\n                   You can  perform following tasks: ");
+				System.out.println("               ----------------------------------------------");
+				System.out.println("            1.Go to tickets Booking    2.Go to Customer Dashboard");
+				System.out.println("                      3.Exit the application.");
+				System.out.println("                         Enter your choice:");
+				int usrchoi3=sc.nextInt();
+				
+				if(usrchoi3==1) {
+					bookTickets(customer);
+				}
+				else if(usrchoi3==2) {
+					customerDashhBoard(customer);
+				}
+				else if(usrchoi3==3) {
+					System.exit(0);
+				}
+				else {
+					System.out.println("Invalid choice. Please Start again.");
+					System.exit(0);
+				}
+			}
+}
+	
+	
+	
 	
 	public static void cancelTickets(Customer customer) {
 		
