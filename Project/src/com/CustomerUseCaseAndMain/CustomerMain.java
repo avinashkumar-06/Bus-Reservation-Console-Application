@@ -12,7 +12,8 @@ import com.exceptions.CustomerException;
 
 public class CustomerMain {
 
-	
+//	This method will be called from main class of utility package.
+//	It will take input from user and register it to the database.
 	public static void registerCustomer() {
 		
 		Scanner sc = new Scanner(System.in);
@@ -62,6 +63,9 @@ public class CustomerMain {
 		
 	}
 	
+//	This method will be called from main class of utility package.
+//	It will take input from user and will verify with details in database to verify if password and username is correct.
+	
 	public static void existingCustomer() {
 		Scanner sc = new Scanner(System.in);
 		CustomerDaoInter  intr = new CustommerDaoImpl();
@@ -106,7 +110,8 @@ public class CustomerMain {
 	}
 	
 	
-	
+//	This method will be called from existingCustomer() method with Customer object.
+//	It will show options to user for ticket booking,cancel ticket and view all ticket.	
 	public static void customerDashhBoard(Customer customer) {
 		Scanner sc = new Scanner(System.in);
 		
@@ -126,6 +131,11 @@ public class CustomerMain {
 		}
 		
 	}
+	
+	
+	
+//	This method will be called from customerDashboard() method with Customer object.
+//	It will take input from user and will book ticket.
 	
 	public static void bookTickets(Customer customer) {
 		Scanner sc = new Scanner(System.in);
@@ -220,19 +230,23 @@ public class CustomerMain {
 //		Checking booked or not.
 		try {
 			String msg = intr.bookAndAddTicketToDataBase(ticket);
-			System.out.println(msg);
-			
-		    System.out.println("Your Bus name is "+ticket.getBname()+" and it will depart at "+ticket.getDeparture()+
-		    		" from "+ticket.getSource()+" and will reach "+ticket.getDestination()+" at "+ticket.getArrival());
+			System.out.println("                         "+msg);
+			System.out.println("                     Here is your Booking details:  ");
+			System.out.println("                  -----------------------------------");
+			System.out.println("                         Bus Name: "+ticket.getBname().toUpperCase()+"\n");
+			System.out.println("                         Source: "+ticket.getSource().toUpperCase()+"\n");
+			System.out.println("                         Departure time: "+ticket.getDeparture().toUpperCase()+"\n");
+			System.out.println("                         Destination: "+ticket.getDestination().toUpperCase()+"\n");
+			System.out.println("                         Arrival: "+ticket.getArrival().toUpperCase()+"\n");
+			System.out.println("                         Number of seats: "+ticket.getSeatNum()+"\n");
+			System.out.println("                         Bus contact:"+ticket.getContact()+"\n");
+			System.out.println("                         Fare: "+ticket.getFare());
+
 		    
-		    System.out.println("You have booked "+ticket.getSeatNum()+" seats and bill is "+ticket.getFare());
-		    
-		    System.out.println("Please cotact bus manager for any help at mobile number "+ticket.getContact());
-		    
-		    System.out.println("--------------------------------------");
-		    System.out.println("1. Book another ticket    2.Go to Customer Dashboard");
-			System.out.println("3.Exit the application.");
-			System.out.println("Enter your choice:");
+		    System.out.println("                    --------------------------------------");
+		    System.out.println("            1. Book another ticket    2.Go to Customer Dashboard");
+			System.out.println("                      3.Exit the application.");
+			System.out.println("                        Enter your choice:");
 			int usrchoi3=sc.nextInt();
 			
 			if(usrchoi3==1) {
@@ -248,6 +262,7 @@ public class CustomerMain {
 				System.out.println("Invalid choice. Please Start again.");
 				System.exit(0);
 			}
+		    
 		    
 		} catch (CustomerException e) {
 			System.out.println(e.getMessage());
@@ -275,6 +290,71 @@ public class CustomerMain {
 	
 	}
 	
+//	This method will be called from customerDashboard() method with Customer object.
+//	It will show all the tickets booked by user.
+	
+	public static void viewTickets(Customer customer) {
+
+		Scanner sc = new Scanner(System.in);
+		CustomerDaoInter  intr = new CustommerDaoImpl();
+		List<Tickets> tickets = null;
+		
+		try {
+		    tickets = intr.getTicketsOfACustomer(customer.getCid());
+			System.out.println("Here is the list of your tickets:-");
+			System.out.println("----------------------------------------------\n");
+			
+			for(int i=0;i<tickets.size();i++) {
+				System.out.println(i+"."+tickets.get(i));
+			}
+			
+			    System.out.println("--------------------------------------------------------");
+			    System.out.println("1. Book Ticket    2.Go to Customer Dashboard");
+				System.out.println("3.Exit the application.");
+				System.out.println("Enter your choice:");
+				int usrchoi3=sc.nextInt();
+				
+				if(usrchoi3==1) {
+					bookTickets(customer);
+				}
+				else if(usrchoi3==2) {
+					customerDashhBoard(customer);
+				}
+				else if(usrchoi3==3) {
+					System.exit(0);
+				}
+				else {
+					System.out.println("Invalid choice. Please Start again.");
+					System.exit(0);
+				}
+		}
+		 catch (CustomerException e) {
+				System.out.println("\n                   "+e.getMessage());
+				System.out.println("\n                   You can  perform following tasks: ");
+				System.out.println("               ----------------------------------------------");
+				System.out.println("            1.Go to tickets Booking    2.Go to Customer Dashboard");
+				System.out.println("                      3.Exit the application.");
+				System.out.println("                         Enter your choice:");
+				int usrchoi3=sc.nextInt();
+				
+				if(usrchoi3==1) {
+					bookTickets(customer);
+				}
+				else if(usrchoi3==2) {
+					customerDashhBoard(customer);
+				}
+				else if(usrchoi3==3) {
+					System.exit(0);
+				}
+				else {
+					System.out.println("Invalid choice. Please Start again.");
+					System.exit(0);
+				}
+			}
+}
+	
+//	This method will be called from customerDashboard() method with Customer object.
+//	It will ask user to choose which ticket to cancel and then it will cancel that ticket.
 	public static void cancelTickets(Customer customer) {
 		
 		Scanner sc = new Scanner(System.in);
