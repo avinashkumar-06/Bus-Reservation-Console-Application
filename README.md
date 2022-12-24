@@ -44,6 +44,8 @@ process of ticket booking and its also provide user 24*7 access to book ticekts.
   ###### Learned about JDBC oprtaions.
   ###### Learned about many new sql queries.
   
-  
+## Entity Relationship Diagram
+   ###### ER Diagram for the database tables.
+![App Screenshot](https://raw.githubusercontent.com/avinashkumar-06/offbeat-jeans-3946/review-day-3/bus-reservation-system-erd.png)
   
   
