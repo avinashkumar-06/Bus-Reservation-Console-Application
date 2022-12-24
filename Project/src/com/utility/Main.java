@@ -5,12 +5,14 @@ import java.util.Scanner;
 
 import com.AdminUseCaseAndMain.AdminMain;
 import com.CustomerUseCaseAndMain.CustomerMain;
+import com.exceptions.BusException;
+import com.exceptions.CustomerException;
 
 
 public class Main {
 
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws CustomerException, BusException {
 		
 		Scanner sc = new Scanner(System.in);
 		System.out.println("                    ==================================================");

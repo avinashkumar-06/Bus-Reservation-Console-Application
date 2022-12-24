@@ -9,8 +9,10 @@ import java.util.List;
 
 import com.bean.Admin;
 import com.bean.Bus;
+import com.bean.Customer;
 import com.exceptions.AdminException;
 import com.exceptions.BusException;
+import com.exceptions.CustomerException;
 import com.utility.DBUtil;
 
 public class AdminDaoImpl implements AdminDaoInter {
@@ -129,6 +131,45 @@ public class AdminDaoImpl implements AdminDaoInter {
 		
 		
 		return buses;
+	}
+
+	@Override
+	public List<Customer> viewAllCustomer() throws CustomerException {
+		
+		
+		List<Customer> customers = new ArrayList<>();
+		
+		try(Connection conn = DBUtil.provideConnection()){
+			
+				PreparedStatement ps = conn.prepareStatement("select * from Customer");
+				ResultSet rs = ps.executeQuery();
+				
+				while(rs.next()) {
+					
+					Customer customer =  new Customer(); 
+						
+					customer.setCid(rs.getInt("cid"));
+					customer.setAge(rs.getInt("age"));
+					customer.setName(rs.getString("name"));
+					customer.setGender(rs.getString("gender"));
+					customer.setEmail(rs.getString("email"));
+					customer.setPassword("No display");
+					
+					customers.add(customer);
+					
+				}
+				
+				if(customers.isEmpty()) {
+					throw new CustomerException("No customer found in the database.");
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				throw new CustomerException(e.getMessage());
+			}
+		
+		
+		return customers;
 	}
 
 
