@@ -7,12 +7,14 @@ import com.admindao.AdminDaoImpl;
 import com.admindao.AdminDaoInter;
 import com.bean.Admin;
 import com.bean.Bus;
+import com.bean.Customer;
 import com.exceptions.AdminException;
 import com.exceptions.BusException;
+import com.exceptions.CustomerException;
 
 public class AdminMain {
 
-	public static void dashBoard() {
+	public static void dashBoard() throws CustomerException,BusException {
 		
 		Scanner sc=new Scanner(System.in);
 		
@@ -20,12 +22,13 @@ public class AdminMain {
 		System.out.println("========================");
 		
 		System.out.println("1.Add A bus                   2.View All Buses \n");
+		System.out.println("3.View all customer \n");
 		
 
 		int choice = sc.nextInt();
 		
 		switch(choice) {
-		
+//		In this case Admin can add a bus.
 		case 1:
 				
 			System.out.println("Enter the bus id: ");
@@ -83,7 +86,7 @@ public class AdminMain {
 			}
 			
 			break;
-			
+//			Admin can view all bus.
 		case 2:
 			AdminDaoInter intr1 = new AdminDaoImpl();
 			try {
@@ -98,12 +101,28 @@ public class AdminMain {
 				// TODO Auto-generated catch block
 				System.out.println(e.getMessage());
 			}
+//			Admin can see all customers.
+		case 3:
+			AdminDaoInter  intr2 = new AdminDaoImpl();
+			try {
+				List<Customer> customers=intr2.viewAllCustomer();
+				
+				for(Customer c : customers) {
+					System.out.println(c);
+				}
+				
+				
+			} catch (CustomerException e) {
+				// TODO Auto-generated catch block
+				System.out.println(e.getMessage());
+			}
 			
 		}
 		
 	}
 	
-	public static void adminFunction(String email,String password) {
+//	This is the main function and it will check for email and password.
+	public static void adminFunction(String email,String password) throws CustomerException, BusException {
 		
 		AdminDaoInter  intr = new AdminDaoImpl();
 		
